@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="300" http-equiv="refresh"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MYR ATC WX Briefing</title>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        :root {
+            --background: #0a0a0a;
+            --section-bg: #1c1c1e;
+            --primary: #3498db;
+            --secondary: #f39c12;
+            --text: #e5e5e5;
+            --header: #66ccff;
+            --border: #444;
+        }
+        body {
+            margin: 0;
+            font-family: 'Roboto', 'Segoe UI', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+        }
+        body::before {
+            content: "";
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/NATCA_Logo.svg/512px-NATCA_Logo.svg.png') no-repeat center center;
+            background-size: 30%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 0;
+            pointer-events: none;
+        }
+        main, header, footer {
+            position: relative;
+            z-index: 1;
+        }
+        header {
+            background-color: var(--section-bg);
+            border-bottom: 3px solid var(--primary);
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        header h1 {
+            color: var(--primary);
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        header h2 {
+            margin-top: 0.5rem;
+            font-size: 1.2rem;
+            color: var(--header);
+        }
+        main {
+            max-width: 1300px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        section {
+            background-color: var(--section-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        section h3 {
+            background-color: var(--primary);
+            color: black;
+            padding: 1rem;
+            margin: 0;
+            font-size: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .split {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1%;
+        }
+        .split iframe, iframe {
+            width: 100%;
+            border: none;
+            display: block;
+        }
+        .split iframe {
+            width: 49%;
+        }
+        .checkwx-container {
+            background: #222;
+            padding: 1rem;
+            font-size: 1rem;
+            text-align: center;
+            border-top: 2px solid var(--secondary);
+            border-bottom: 2px solid var(--secondary);
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: var(--header);
+        }
+        a {
+            color: var(--primary);
+        }
+    </style>
+<style>
+.initials-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 10px;
+  margin: 20px auto;
+  max-width: 90%;
+}
+
+button.initials-btn {
+  font-size: 1.2em;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background-color: #f5f5f5;
+  transition: background-color 0.3s;
+}
+</style></head>
+<body>
+<header>
+<h1>🛫 MYR WX PAGE 🛬</h1>
+<h2>PRE-DUTY WX BRIEF - RADAR - METARs - TAF - WINDS ALOFT - NOTAMs</h2>
+
+<div id="clock-wrapper" style="text-align:center; font-size: 1.2em; color: white; margin-top: 10px;">
+  Local Time: <span id="local-clock">--:--</span> | UTC: <span id="utc-clock">--:--</span>
+</div>
+</header>
+<main>
+<section>
+<h3>PRE-DUTY WX BRIEF</h3>
+<div class="split">
+<iframe src="https://www.weather.gov/zjx/pdwb_myr" style="width: 100%; height: 100vh; border: none;"></iframe>
+</div>
+</section><section style="margin-top: 30px;"><h3 style="text-align: center;">Click your initials to indicate PRE-DUTY WX briefing completion</h3><div style="display: flex; flex-wrap: wrap; justify-content: space-around;"><div style="flex: 1; min-width: 120px; padding: 10px;"><h4 style="text-align: center;">LINE A</h4><button class="initial-btn initials-btn" onclick="signOff('FX')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">FX</button><button class="initial-btn initials-btn" onclick="signOff('HD')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">HD</button><button class="initial-btn initials-btn" onclick="signOff('ET')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">ET</button></div><div style="flex: 1; min-width: 120px; padding: 10px;"><h4 style="text-align: center;">LINE B</h4><button class="initial-btn initials-btn" onclick="signOff('CM')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">CM</button><button class="initial-btn initials-btn" onclick="signOff('PM')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">PM</button></div><div style="flex: 1; min-width: 120px; padding: 10px;"><h4 style="text-align: center;">LINE C</h4><button class="initial-btn initials-btn" onclick="signOff('JM')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">JM</button><button class="initial-btn initials-btn" onclick="signOff('CY')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">CY</button></div><div style="flex: 1; min-width: 120px; padding: 10px;"><h4 style="text-align: center;">LINE D</h4><button class="initial-btn initials-btn" onclick="signOff('JP')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">JP</button><button class="initial-btn initials-btn" onclick="signOff('BR')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">BR</button><button class="initial-btn initials-btn" onclick="signOff('YX')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">YX</button></div><div style="flex: 1; min-width: 120px; padding: 10px;"><h4 style="text-align: center;">LINE E</h4><button class="initial-btn initials-btn" onclick="signOff('LW')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">LW</button><button class="initial-btn initials-btn" onclick="signOff('EO')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">EO</button><button class="initial-btn initials-btn" onclick="signOff('BD')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">BD</button></div><div style="flex: 1; min-width: 120px; padding: 10px;"><h4 style="text-align: center;">LINE F</h4><button class="initial-btn initials-btn" onclick="signOff('SK')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">SK</button><button class="initial-btn initials-btn" onclick="signOff('LB')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">LB</button></div><div style="flex: 1; min-width: 120px; padding: 10px;"><h4 style="text-align: center;">LINE G</h4><button class="initial-btn initials-btn" onclick="signOff('JG')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">JG</button><button class="initial-btn initials-btn" onclick="signOff('KG')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">KG</button><button class="initial-btn initials-btn" onclick="signOff('HS')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">HS</button></div><div style="flex: 1; min-width: 120px; padding: 10px;"><h4 style="text-align: center;">TRAINEES</h4><button class="initial-btn initials-btn" onclick="signOff('KW')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">KW</button><button class="initial-btn initials-btn" onclick="signOff('WW')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">WW</button><button class="initial-btn initials-btn" onclick="signOff('ZZ')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">ZZ</button><button class="initial-btn initials-btn" onclick="signOff('JR')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">JR</button></div>
+<div style="flex: 1; min-width: 120px; padding: 10px;">
+<h4 style="text-align: center;">OS</h4>
+<button class="initial-btn initials-btn" onclick="signOff('RZ')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">RZ</button>
+<button class="initial-btn initials-btn" onclick="signOff('LL')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">LL</button>
+<button class="initial-btn initials-btn" onclick="signOff('JJ')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">JJ</button>
+<button class="initial-btn initials-btn" onclick="signOff('NG')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">NG</button>
+<button class="initial-btn initials-btn" onclick="signOff('WD')" style="width: 100%; padding: 10px; font-size: 1.2em; margin-bottom: 5px;">WD</button>
+</div>
+</div>
+<div style="text-align: center;">
+<button onclick="toggleLogVisibility()">Show Log</button>
+</div>
+<div id="log-container" style="text-align: center;">
+<div id="signoff-log" style="display: none; margin-top: 10px;"><div id="signoff-log-content" style="font-family: monospace;"></div></div>
+</div>
+</section>
+<section>
+<h3>METARs</h3>
+<div class="checkwx-container" data-station="KMYR,KCRE,KGGE,KHYW,KCPC,KCKI" data-type="METAR">
+            Loading METARs...
+        </div>
+</section>
+<section>
+<h3>WX RADAR</h3>
+<iframe height="600" src="https://radar.weather.gov/?settings=v1_eyJhZ2VuZGEiOnsiaWQiOiJuYXRpb25hbCIsImNlbnRlciI6Wy03Ni4yODksMzQuMjcxXSwibG9jYXRpb24iOlstNzkuMTQzLDMzLjYwNV0sInpvb20iOjYsImxheWVyIjoiYnJlZl9xY2QifSwiYW5pbWF0aW5nIjp0cnVlLCJiYXNlIjoic2F0ZWxsaXRlIiwiYXJ0Y2MiOnRydWUsImNvdW50eSI6ZmFsc2UsImN3YSI6ZmFsc2UsInJmYyI6ZmFsc2UsInN0YXRlIjp0cnVlLCJtZW51Ijp0cnVlLCJzaG9ydEZ1c2VkT25seSI6dHJ1ZSwib3BhY2l0eSI6eyJhbGVydHMiOjAuOCwibG9jYWwiOjAuNiwibG9jYWxTdGF0aW9ucyI6MC44LCJuYXRpb25hbCI6MC42fX0%3D#/"></iframe>
+</section>
+<section>
+<h3>TAF</h3>
+<iframe height="500" src="https://forecast.weather.gov/product.php?site=NWS&amp;issuedby=MYR&amp;product=TAF&amp;format=TXT&amp;version=1&amp;glossary=1"></iframe>
+</section>
+<section>
+<h3>WINDS ALOFT</h3>
+<iframe height="500" src="https://forecast.weather.gov/product.php?site=NWS&amp;issuedby=US1&amp;product=FD1&amp;format=TXT&amp;version=1&amp;glossary=1"></iframe>
+</section>
+<section>
+<h3>NOTAMs</h3>
+<iframe height="5530" src="https://pilotweb.nas.faa.gov/PilotWeb/notamRetrievalByICAOAction.do?method=displayByICAOs&amp;formatType=DOMESTIC&amp;retrieveLocId=myr+cre+hyw+gge+cpc+cki+5j9+phh+60j+s79+&amp;reportType=REPORT&amp;openItems=icaosHeader%2Cicaos%3AicaoHead%2Cicao%3ArightNavSec0%2CrightNavSecBorder0%3A&amp;actionType=notamRetrievalByICAOs&amp;submit=View+NOTAMs"></iframe>
+</section></main>
+<footer>
+    © 2025 MYR ATC WX Briefing
+</footer>
+<script src="https://api.checkwx.com/widget?key=d56cf78d0062401fbb3c6f8716" type="text/javascript"></script>
+<section style="text-align: center; margin-top: 40px;">
+<button onclick="exportSignOffLog()" style="padding: 10px 20px; font-size: 1.1em;">📤 Export Sign-Off Log (CSV)</button>
+</section>
+<script>
+  function exportSignOffLog() {
+    let signOffLog = JSON.parse(localStorage.getItem("signOffLog") || "[]");
+    const now = new Date();
+    const today = now.toISOString().split("T")[0];
+    const time = now.toLocaleTimeString();
+
+    signOffLog.push({ initials: "SYSTEM", timestamp: time, date: today, action: "Log Exported" });
+    localStorage.setItem("signOffLog", JSON.stringify(signOffLog));
+
+    let csvContent = "data:text/csv;charset=utf-8,Initials,Time,Date,Action\n";
+    // Show most recent first
+    signOffLog.slice().reverse().forEach(row => {
+      csvContent += `${row.initials},${row.timestamp},${row.date},${row.action || ""}\n`;
+    });
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `signoff_log_${today}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+</script>
+<script>
+  const clickCounts = {};
+  const signOffLog = JSON.parse(localStorage.getItem("signOffLog") || "[]");
+
+  function signOff(initials) {
+    clickCounts[initials] = (clickCounts[initials] || 0) + 1;
+    const now = new Date();
+    const today = now.toISOString().split("T")[0];
+    const time = now.toLocaleTimeString();
+
+    const buttons = document.querySelectorAll("button.initials-btn");
+    buttons.forEach(btn => {
+      if (btn.textContent.replace("✅", "").trim() === initials) {
+        if (clickCounts[initials] === 3) {
+          btn.style.backgroundColor = "";
+          btn.textContent = initials;
+          clickCounts[initials] = 0;
+          signOffLog.push({ initials, timestamp: time, date: today, action: "Highlight Cleared" });
+        } else {
+          btn.style.backgroundColor = "#90ee90";
+          btn.textContent = initials + " ✅";
+          signOffLog.push({ initials, timestamp: time, date: today, action: "Signed" });
+        }
+      }
+    });
+
+    localStorage.setItem("signOffLog", JSON.stringify(signOffLog));
+    updateLogDisplay();
+  }
+
+  function updateLogDisplay() {
+    const log = JSON.parse(localStorage.getItem("signOffLog") || "[]").slice().reverse();
+    const container = document.getElementById("signoff-log-content");
+    if (!container) return;
+    container.innerHTML = "";
+    log.forEach(entry => {
+      const div = document.createElement("div");
+      div.textContent = `${entry.date} ${entry.timestamp} - ${entry.initials} - ${entry.action}`;
+      container.appendChild(div);
+    });
+  }
+
+  function toggleLogVisibility() {
+    const logSection = document.getElementById("signoff-log");
+    logSection.style.display = logSection.style.display === "none" ? "block" : "none";
+    updateLogDisplay();
+  }
+
+  function updateClocks() {
+    const now = new Date();
+    const localClock = document.getElementById("local-clock");
+    const utcClock = document.getElementById("utc-clock");
+    if (localClock) localClock.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    if (utcClock) utcClock.textContent = now.toUTCString().slice(17, 22);
+  }
+
+  setInterval(updateClocks, 1000);
+  window.onload = () => {
+    updateLogDisplay();
+    updateClocks();
+  };
+</script>
+</body>
+</html>
